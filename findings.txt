@@ -1,0 +1,30 @@
+Type:
+Eraser
+Freq < 146
+Mag > 86000
+
+Coin
+Freq > 146
+Mag < 86000
+
+------
+
+Dist
+10cm
+Freq < 300 
+Mag < 200000
+
+30cm
+Freq > 300
+Mag > 200000
+
+------
+
+Height
+10 cm
+Freq < 3000
+Mag < 76500
+
+30 cm
+Freq > 3000
+Mag > 76500
