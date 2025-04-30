@@ -1,0 +1,48 @@
+18:27:25 **** Incremental Build of configuration Debug for project FFT ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L432xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../Middlewares/ST/ARM/DSP/Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:158:68: warning: passing argument 4 of 'arm_max_f32' from incompatible pointer type [-Wincompatible-pointer-types]
+  158 |           arm_max_f32(fft_magnitude, FFT_SIZE / 2, &max_magnitude, &max_bin);
+      |                                                                    ^~~~~~~~
+      |                                                                    |
+      |                                                                    uint16_t * {aka short unsigned int *}
+In file included from ../Core/Src/main.c:20:
+../Middlewares/ST/ARM/DSP/Inc/arm_math.h:7649:20: note: expected 'uint32_t *' {aka 'long unsigned int *'} but argument is of type 'uint16_t *' {aka 'short unsigned int *'}
+ 7649 |         uint32_t * pIndex);
+      |         ~~~~~~~~~~~^~~~~~
+../Core/Src/main.c:175:29: warning: suggest parentheses around comparison in operand of '&' [-Wparentheses]
+  175 |           if (int_frequency > 146 & int_magnitude < 86000){
+      |               ~~~~~~~~~~~~~~^~~~~
+../Core/Src/main.c:177:33: warning: implicit declaration of function 'snprintf' [-Wimplicit-function-declaration]
+  177 |                                 snprintf(msg, sizeof(msg), "Coin, Max Freq: %d Hz, Magnitude: %d\r\n", int_frequency, int_magnitude);
+      |                                 ^~~~~~~~
+../Core/Src/main.c:21:1: note: include '<stdio.h>' or provide a declaration of 'snprintf'
+   20 | #include "arm_math.h"
+  +++ |+#include <stdio.h>
+   21 | #include <math.h>
+../Core/Src/main.c:177:33: warning: incompatible implicit declaration of built-in function 'snprintf' [-Wbuiltin-declaration-mismatch]
+  177 |                                 snprintf(msg, sizeof(msg), "Coin, Max Freq: %d Hz, Magnitude: %d\r\n", int_frequency, int_magnitude);
+      |                                 ^~~~~~~~
+../Core/Src/main.c:177:33: note: include '<stdio.h>' or provide a declaration of 'snprintf'
+../Core/Src/main.c:180:33: warning: suggest parentheses around comparison in operand of '&' [-Wparentheses]
+  180 |           else if(int_frequency < 146 & int_magnitude > 86000){
+      |                   ~~~~~~~~~~~~~~^~~~~
+../Core/Src/main.c:182:33: warning: incompatible implicit declaration of built-in function 'snprintf' [-Wbuiltin-declaration-mismatch]
+  182 |                                 snprintf(msg, sizeof(msg), "Eraser, Max Freq: %d Hz, Magnitude: %d\r\n", int_frequency, int_magnitude);
+      |                                 ^~~~~~~~
+../Core/Src/main.c:182:33: note: include '<stdio.h>' or provide a declaration of 'snprintf'
+arm-none-eabi-gcc -o "FFT.elf" @"objects.list"  -l:libarm_cortexM4lf_math.a -mcpu=cortex-m4 -T"C:\Users\yttey\STM32CubeIDE\FFT\FFT\STM32L432KCUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="FFT.map" -Wl,--gc-sections -static -L../Middlewares/ST/ARM/DSP/Lib --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: FFT.elf
+ 
+arm-none-eabi-size  FFT.elf 
+arm-none-eabi-objdump -h -S FFT.elf  > "FFT.list"
+   text	   data	    bss	    dec	    hex	filename
+ 145612	     92	  26724	 172428	  2a18c	FFT.elf
+Finished building: default.size.stdout
+ 
+Finished building: FFT.list
+ 
+
+18:27:27 Build Finished. 0 errors, 6 warnings. (took 1s.925ms)
+
